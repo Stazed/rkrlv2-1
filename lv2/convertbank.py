@@ -146,7 +146,7 @@ def efxorder2structindex(x):
         41 : 42, # echotron
         42 : 43, # stereoharm
         43 : 44, # compband
-        44 : 44, # otrem
+        44 : 45, # otrem
         45 : 46, # vibe
         46 : 47, # inf
     }[x]
@@ -221,10 +221,7 @@ def readBankFile(filename):
         for j in order:
             k = 14+efxorder2structindex(j)*20
             params = b[k:k+21]
-            if (not params[19] or j==30): #skip bypassed or looper TODO: add gate
-                continue
-            if (j==16):
-                print(" WARNING: gate not done")
+            if (not params[19] or j==30): #skip bypassed or looper 
                 continue
             if (j == 29):
                 print(" WARNING: convo not done")
@@ -258,7 +255,7 @@ def readBankFile(filename):
     f.close()
 
 # -----------------------------------------------------------------------------------------------
-    
+
 readBankFile("../data/Default.rkrb")
 readBankFile("../data/Extra.rkrb")
 readBankFile("../data/Extra1.rkrb")
